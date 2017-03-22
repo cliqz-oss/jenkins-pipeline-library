@@ -1,0 +1,13 @@
+/**
+ * Parses junit test report for summary
+ *
+ * @param   reportPath    The path to junit report
+ * @return  Test report summary as a map
+ */
+
+The <code>xunit</code> variable provides methods to parse xUnit reports.
+
+<dl>
+  <dt>parse([reportPath])</dt>
+  <dd><p>Parses a xunit report located at a path</p></dd>
+</dl>
