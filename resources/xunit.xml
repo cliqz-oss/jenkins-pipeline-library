@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="1" name="pytest" skips="0" tests="1" time="0.838"><testcase classname="check_sphinx" file="check_sphinx.py" line="9" name="test_build_docs" time="0.791911840439"><failure message="CalledProcessError: Command &apos;[&apos;sphinx-build&apos;, &apos;-n&apos;, &apos;-bhtml&apos;, &apos;-d&apos;, &apos;/private/var/folders/f2/fff2d12x509d3nrjdsspjx_80000gn/T/pytest-of-gunz/pytest-0/test_build_docs0/doctrees&apos;, &apos;.&apos;, &apos;/private/var/folders/f2/fff2d12x509d3nrjdsspjx_80000gn/T/pytest-of-gunz/pytest-0/test_build_docs0/html&apos;]&apos; returned non-zero exit status 1">E   CalledProcessError: Command &apos;[&apos;sphinx-build&apos;, &apos;-n&apos;, &apos;-bhtml&apos;, &apos;-d&apos;, &apos;/private/var/folders/f2/fff2d12x509d3nrjdsspjx_80000gn/T/pytest-of-gunz/pytest-0/test_build_docs0/doctrees&apos;, &apos;.&apos;, &apos;/private/var/folders/f2/fff2d12x509d3nrjdsspjx_80000gn/T/pytest-of-gunz/pytest-0/test_build_docs0/html&apos;]&apos; returned non-zero exit status 1</failure><system-out>Running Sphinx v1.4.6
+making output directory...
+</system-out><system-err>WARNING: sphinx.ext.pngmath has been deprecated. Please use sphinx.ext.imgmath instead.
+
+Extension error:
+Could not import extension matplotlib.sphinxext.only_directives (exception: No module named matplotlib.sphinxext.only_directives)
+</system-err></testcase></testsuite>
