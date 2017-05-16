@@ -8,6 +8,6 @@
 The <code>xunit</code> variable provides methods to parse xUnit reports.
 
 <dl>
-  <dt>parse([reportPath])</dt>
+  <dt>parse(reportPath)</dt>
   <dd><p>Parses a xunit report located at a path</p></dd>
 </dl>

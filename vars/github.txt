@@ -1,0 +1,13 @@
+/**
+ * Wrapper for github http API
+ *
+ * @param   reportPath    The path to junit report
+ * @return  Test report summary as a map
+ */
+
+The <code>github</code> variable provides methods to access github api.
+
+<dl>
+  <dt>setCommitStatus(token, repo, commit, context, status, message)</dt>
+  <dd><p>Sets status message on given commit</p></dd>
+</dl>
