@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 
+@NonCPS
 def parse(reportPath) {
     def result = sh(returnStdout: true, script: "xmllint --xpath '//testsuite/@*' ${reportPath}").trim()
     def lstResult = result =~ /([^=]+)="([^"]+)"[\s]*/
