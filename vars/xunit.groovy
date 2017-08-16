@@ -7,7 +7,10 @@ def _parse(result) {
     def summary = [:]
     if (lstResult.hasGroup()) {
       for (int i=0; i<lstResult.size(); i++) {
-        summary[lstResult[i][1]] = lstResult[i][2]
+        def res = lstResult[i]
+        if (res.size() >= 2) {
+          summary[res[1]] = res[2]
+        }
       }
     }
     lstResult = null
