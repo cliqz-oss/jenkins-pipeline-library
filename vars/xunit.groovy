@@ -1,16 +1,25 @@
 #!/usr/bin/env groovy
 
-def parse(reportPath) {
-    def result = sh(returnStdout: true, script: "xmllint --xpath '//testsuite/@*' ${reportPath}").trim()
+@NonCPS
+def _parse(result) {
     def lstResult = result =~ /([^=]+)="([^"]+)"[\s]*/
 
     def summary = [:]
     if (lstResult.hasGroup()) {
       for (int i=0; i<lstResult.size(); i++) {
-        summary[lstResult[i][1]] = lstResult[i][2]
+        def res = lstResult[i]
+        if (res.size() >= 2) {
+          summary[res[1]] = res[2]
+        }
       }
     }
+    lstResult = null
     return summary
+}
+
+def parse(reportPath) {
+    def result = sh(returnStdout: true, script: "xmllint --xpath '//testsuite/@*' ${reportPath}").trim()
+    return _parse(result)
 }
 
 // source: https://issues.jenkins-ci.org/browse/JENKINS-27395?focusedCommentId=256459&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-256459

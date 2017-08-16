@@ -42,9 +42,9 @@ def getIp() {
     sh(
         returnStdout: true,
         script: '''#!/bin/bash
-            /sbin/ifconfig eth0 | grep "inet addr:" | cut -d: -f2 | awk \'{ print $1}\'
+            curl http://169.254.169.254/latest/meta-data/local-ipv4
         '''
-     ).trim()
+    ).trim()
 }
 
 return this
