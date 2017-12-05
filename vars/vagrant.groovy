@@ -33,7 +33,7 @@ def _getNodeSecret(nodeId) {
     return jenkins.slaves.JnlpSlaveAgentProtocol.SLAVE_SECRET.mac(nodeId)
 }
 
-def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Integer memory, Integer vnc_port, Boolean rebuild, Closure body) {
+def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Integer memory, Integer vnc_port, Boolean rebuild, Boolean debug=false, Closure body) {
     def nodeId = "${env.BUILD_TAG}"
     _createNode(nodeId, jenkinsFolderPath)
 
@@ -53,7 +53,11 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
             if (rebuild) {
                 sh 'vagrant destroy --force'
             }
-            sh  'vagrant up'
+            if (debug) {
+                sh 'vagrant up --debug'
+            } else {
+                sh  'vagrant up'
+            }
         }
 
         body(nodeId)
