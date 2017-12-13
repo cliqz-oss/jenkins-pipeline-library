@@ -51,7 +51,12 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
 
             sh 'vagrant halt --force'
             if (rebuild) {
-                sh 'vagrant destroy --force'
+                try {
+                    sh 'vagrant destroy --force'
+                } catch (e) {
+                    echo 'ignoring error on destroy'
+                    echo e
+                }
             }
             if (debug) {
                 sh 'vagrant up --debug'
@@ -61,6 +66,9 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
         }
 
         body(nodeId)
+    } catch (e) {
+        echo 'Error:'
+        echo e
     } finally {
         _removeNode(nodeId)
         withEnv(["VAGRANT_VAGRANTFILE=${vagrantFilePath}"]) {
