@@ -55,7 +55,7 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
                     sh 'vagrant destroy --force'
                 } catch (e) {
                     echo 'ignoring error on destroy'
-                    echo e
+                    echo e.getMessage()
                 }
             }
             if (debug) {
@@ -68,7 +68,7 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
         body(nodeId)
     } catch (e) {
         echo 'Error:'
-        echo e
+        echo e.getMessage()
     } finally {
         _removeNode(nodeId)
         withEnv(["VAGRANT_VAGRANTFILE=${vagrantFilePath}"]) {
