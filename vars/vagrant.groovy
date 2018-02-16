@@ -59,7 +59,7 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
                 }
             }
             if (debug) {
-                sh 'vagrant up --debug'
+                sh 'vagrant up --debug --provision'
             } else {
                 sh  'vagrant up'
             }
@@ -70,9 +70,11 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
         echo 'Error:'
         echo e.getMessage()
     } finally {
-        _removeNode(nodeId)
-        withEnv(["VAGRANT_VAGRANTFILE=${vagrantFilePath}"]) {
-            sh 'vagrant halt --force'
+        if (!debug) {
+            _removeNode(nodeId)
+            withEnv(["VAGRANT_VAGRANTFILE=${vagrantFilePath}"]) {
+                sh 'vagrant halt --force'
+            }
         }
     }
 }
