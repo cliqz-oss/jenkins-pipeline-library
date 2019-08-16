@@ -35,7 +35,7 @@ def _getNodeSecret(nodeId) {
 
 def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Integer memory, Integer vnc_port, Boolean rebuild, Boolean debug=false, Closure body) {
     def nodeId = "${env.BUILD_TAG}"
-    _createNode(nodeId, jenkinsFolderPath)]
+    _createNode(nodeId, jenkinsFolderPath)
     def error
 
     try {
