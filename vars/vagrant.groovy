@@ -35,7 +35,8 @@ def _getNodeSecret(nodeId) {
 
 def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Integer memory, Integer vnc_port, Boolean rebuild, Boolean debug=false, Closure body) {
     def nodeId = "${env.BUILD_TAG}"
-    _createNode(nodeId, jenkinsFolderPath)
+    _createNode(nodeId, jenkinsFolderPath)]
+    def error
 
     try {
         def nodeSecret = _getNodeSecret(nodeId)
@@ -67,14 +68,16 @@ def inside(String vagrantFilePath, String jenkinsFolderPath, Integer cpu, Intege
 
         body(nodeId)
     } catch (e) {
-        echo 'Error:'
-        echo e.getMessage()
+        error = e
     } finally {
         if (!debug) {
             _removeNode(nodeId)
             withEnv(["VAGRANT_VAGRANTFILE=${vagrantFilePath}"]) {
                 sh 'vagrant halt --force'
             }
+        }
+        if (error) {
+            throw error
         }
     }
 }
